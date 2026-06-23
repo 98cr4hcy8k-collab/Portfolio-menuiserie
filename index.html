@@ -133,40 +133,36 @@
 
     /* ─── GRILLE PHOTOS ─── */
     .galerie {
-      columns: 3 260px;
-      column-gap: 12px;
-    }
-
-    .photo-card {
-      break-inside: avoid;
-      margin-bottom: 12px;
-      position: relative;
-      overflow: hidden;
-      background: #D6CCBC;
-      border: 1px solid var(--trait);
-    }
-
-    .photo-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      transition: transform 0.35s ease;
-      filter: sepia(8%) contrast(1.03);
-    }
-
-    .photo-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .photo-card .legende {
-      padding: 10px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      color: var(--gris);
-      background: white;
-      border-top: 1px solid var(--trait);
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  background: #D6CCBC;
+  border: 1px solid var(--trait);
+}
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  filter: sepia(8%) contrast(1.03);
+}
+.photo-card:hover img {
+  transform: scale(1.03);
+}
+.photo-card .legende {
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--gris);
+  background: white;
+  border-top: 1px solid var(--trait);
+}
 
     /* ─── PLACEHOLDER SANS PHOTO ─── */
     .placeholder-galerie {
