@@ -439,6 +439,29 @@
   <span>Simon — Menuisier Fabricant, Rennes</span>
   <span>© 2026</span>
 </footer>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
+<script>
+  document.querySelectorAll('.photo-card img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('lightbox-img').src = this.src;
+      document.getElementById('lightbox').classList.add('active');
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
 </body>
 </html>
