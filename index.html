@@ -10,10 +10,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bois:     #8B6A3E;   /* chêne moyen */
-      --bois-clair: #C4A06A; /* chêne clair */
-      --encre:    #1C1A17;   /* quasi-noir chaud */
-      --parchemin:#F5F0E8;   /* fond clair */
+      --bois:     #8B6A3E;
+      --bois-clair: #C4A06A;
+      --encre:    #1C1A17;
+      --parchemin:#F5F0E8;
       --gris:     #6B6560;
       --trait:    #D0C4B0;
     }
@@ -53,8 +53,9 @@
       color: var(--encre);
       line-height: 1.1;
     }
+
     h2 {
-      font-family: 'Playfair Display', Source Sans 3;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(1.2rem, 3vw, 1.8rem);
       font-weight: 400;
       color: var(--encre);
@@ -102,6 +103,7 @@
     .intro p {
       font-size: 17px;
       color: var(--gris);
+      margin-top: 16px;
     }
 
     /* ─── SECTIONS ─── */
@@ -133,44 +135,42 @@
 
     /* ─── GRILLE PHOTOS ─── */
     .galerie {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
-}
-.photo-card {
-  position: relative;
-  overflow: hidden;
-  background: #D6CCBC;
-  border: 1px solid var(--trait);
-}
-.photo-card img {
-  display: block;
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-  filter: sepia(8%) contrast(1.03);
-}
-.photo-card:hover img {
-  transform: scale(1.03);
-}
-.photo-card .legende {
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  color: var(--gris);
-  background: white;
-  border-top: 1px solid var(--trait);
-}
-
-    /* ─── PLACEHOLDER SANS PHOTO ─── */
-    .placeholder-galerie {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 12px;
     }
 
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      background: #D6CCBC;
+      border: 1px solid var(--trait);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+      filter: sepia(8%) contrast(1.03);
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .photo-card .legende {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--gris);
+      background: white;
+      border-top: 1px solid var(--trait);
+    }
+
+    /* ─── PLACEHOLDER ─── */
     .placeholder-card {
       aspect-ratio: 4/3;
       background: #E8E0D0;
@@ -182,7 +182,6 @@
       gap: 8px;
       color: var(--gris);
       font-size: 13px;
-      cursor: default;
     }
 
     .placeholder-card .icone {
@@ -249,14 +248,6 @@
       color: var(--encre);
     }
 
-    .contact-tel {
-      margin-top: 20px;
-      font-size: 22px;
-      font-family: 'Playfair Display', Georgia, serif;
-      color: white;
-      letter-spacing: 1px;
-    }
-
     /* ─── PIED DE PAGE ─── */
     footer {
       padding: 24px 40px;
@@ -272,40 +263,40 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
       header, section, .intro, .contact-zone, footer { padding-left: 20px; padding-right: 20px; }
-      .galerie { columns: 1; }
     }
+
     /* ─── LIGHTBOX ─── */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-out;
-}
-.lightbox.active {
-  display: flex;
-}
-.lightbox img {
-  max-width: 92vw;
-  max-height: 92vh;
-  object-fit: contain;
-  filter: none;
-  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
-}
-.lightbox-close {
-  position: fixed;
-  top: 20px;
-  right: 28px;
-  color: white;
-  font-size: 36px;
-  cursor: pointer;
-  line-height: 1;
-  opacity: 0.7;
-}
-.lightbox-close:hover { opacity: 1; }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      filter: none;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 28px;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    .lightbox-close:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -325,9 +316,10 @@
 
 <!-- ══════════════ INTRO ══════════════ -->
 <div class="intro">
-  <h2>Compétences</h2><br>
+  <h2>Compétences</h2>
   <p><strong>Globales</strong> — Conception, dessin 3D, préparation projet, calepinage, débit, corroyage, usinage, gabariage, collage, assemblage, finition, pose, maintenance machine et manutention.
-    <br><br><strong>Machines / outils</strong> — Scies (format, plongeante, sauteuse, onglet), dégauchisseuse, raboteuse, toupie, défonceuse, Lamello, Domino, tenonneuse, mortaiseuse, calibreuse, commande numérique. <br><br>Ce portfolio regroupe mes chantiers récents — de la conception en atelier à la pose chez le client.</p>
+    <br><br><strong>Machines / outils</strong> — Scies (format, plongeante, sauteuse, onglet), dégauchisseuse, raboteuse, toupie, défonceuse, Lamello, Domino, tenonneuse, mortaiseuse, calibreuse, commande numérique.
+    <br><br>Ce portfolio regroupe mes chantiers récents — de la conception en atelier à la pose chez le client.</p>
 </div>
 
 <!-- ══════════════ SECTION FABRICATION ══════════════ -->
@@ -336,23 +328,7 @@
     <h2>Fabrication atelier</h2>
     <div class="trait-deco"></div>
   </div>
-
-  <!--
-    ┌─────────────────────────────────────────────────────┐
-    │  COMMENT AJOUTER TES PHOTOS :                       │
-    │                                                     │
-    │  Remplace les blocs <div class="placeholder-card">  │
-    │  par des blocs comme celui-ci :                     │
-    │                                                     │
-    │  <div class="photo-card">                           │
-    │    <img src="chemin/vers/photo.jpg" alt="...">      │
-    │    <div class="legende">Enfilade chêne — 2024</div> │
-    │  </div>                                             │
-    └─────────────────────────────────────────────────────┘
-  -->
-
   <div class="galerie">
-    <!-- À remplacer par tes vraies photos -->
     <div class="placeholder-card"><span class="icone">🪵</span><span>Ajouter une photo</span></div>
     <div class="placeholder-card"><span class="icone">🪵</span><span>Ajouter une photo</span></div>
   </div>
@@ -361,7 +337,7 @@
 <!-- ══════════════ SECTION POSE ══════════════ -->
 <section id="pose">
   <div class="section-header">
-    <h2>Pose & agencement</h2>
+    <h2>Pose &amp; agencement</h2>
     <div class="trait-deco"></div>
   </div>
   <div class="galerie">
@@ -371,36 +347,33 @@
   </div>
 </section>
 
-  <!-- ══════════════ SECTION FINITION ══════════════ -->
-<section id="pose">
+<!-- ══════════════ SECTION FINITION ══════════════ -->
+<section id="finition">
   <div class="section-header">
     <h2>Finition</h2>
     <div class="trait-deco"></div>
   </div>
   <div class="galerie">
     <div class="photo-card">
-  <img src="Bar.jpg" alt="Ponçage et finition sur main courante d'un bar">
-  <div class="legende">Atelier Lanoë - 2025</div>
-</div>
-    <div class="galerie">
+      <img src="Bar.jpg" alt="Ponçage et finition sur main courante d'un bar">
+      <div class="legende">Atelier Lanoë — 2025</div>
+    </div>
     <div class="photo-card">
-  <img src="Bar1.jpeg" alt="Ponçage et finition sur main courante d'un bar">
-  <div class="legende">Atelier Lanoë (Photo Jeanne Dagron) - 2025</div>
-</div>
-      <div class="galerie">
+      <img src="Bar1.jpeg" alt="Ponçage et finition sur main courante d'un bar">
+      <div class="legende">Atelier Lanoë (Photo Jeanne Dagron) — 2025</div>
+    </div>
     <div class="photo-card">
-  <img src="Bar2.jpeg" alt="Ponçage et finition sur main courante d'un bar">
-  <div class="legende">Atelier Lanoë (Photo Jeanne Dagron) - 2025</div>
-</div>
-        <div class="galerie">
+      <img src="Bar2.jpeg" alt="Ponçage et finition sur main courante d'un bar">
+      <div class="legende">Atelier Lanoë (Photo Jeanne Dagron) — 2025</div>
+    </div>
     <div class="photo-card">
-  <img src="Bar4.jpeg" alt="Ponçage et finition sur main courante d'un bar">
-  <div class="legende">Atelier Lanoë (Photo Jeanne Dagron) - 2025</div>
-</div>
-
+      <img src="Bar4.jpeg" alt="Ponçage et finition sur main courante d'un bar">
+      <div class="legende">Atelier Lanoë (Photo Jeanne Dagron) — 2025</div>
+    </div>
+  </div>
 </section>
 
-<!-- ══════════════ INFOS PERSO ══════════════ -->
+<!-- ══════════════ PROFIL ══════════════ -->
 <section>
   <div class="section-header">
     <h2>Profil</h2>
@@ -431,15 +404,14 @@
   <h2>Me contacter</h2>
   <p>Pour un chantier, une mission en intérim ou une collaboration, n'hésitez pas à m'écrire.</p>
   <a href="mailto:brodinsimon@gmail.com">Envoyer un message</a>
-  <!-- Si tu veux afficher ton téléphone : -->
-  <!-- <div class="contact-tel">06 XX XX XX XX</div> -->
 </div>
 
 <!-- ══════════════ PIED ══════════════ -->
 <footer>
-  <span>Simon — Menuisier Fabricant, Rennes</span>
+  <span>Simon Brodin — Menuisier Fabricant, Rennes</span>
   <span>© 2026</span>
 </footer>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close" onclick="closeLightbox()">✕</span>
