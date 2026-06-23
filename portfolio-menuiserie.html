@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simon — Menuisier Fabricant</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bois:     #8B6A3E;   /* chêne moyen */
+      --bois-clair: #C4A06A; /* chêne clair */
+      --encre:    #1C1A17;   /* quasi-noir chaud */
+      --parchemin:#F5F0E8;   /* fond clair */
+      --gris:     #6B6560;
+      --trait:    #D0C4B0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--parchemin);
+      color: var(--encre);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    /* ─── EN-TÊTE ─── */
+    header {
+      border-bottom: 2px solid var(--bois);
+      padding: 48px 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .label-metier {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--bois-clair);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--encre);
+      line-height: 1.1;
+    }
+
+    .tagline {
+      font-size: 15px;
+      color: var(--gris);
+      max-width: 480px;
+      margin-top: 4px;
+    }
+
+    nav {
+      margin-top: 24px;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--encre);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--bois);
+      border-color: var(--bois);
+    }
+
+    /* ─── INTRO ─── */
+    .intro {
+      padding: 48px 40px;
+      border-bottom: 1px solid var(--trait);
+      max-width: 680px;
+    }
+
+    .intro p {
+      font-size: 17px;
+      color: var(--gris);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 52px 40px;
+      border-bottom: 1px solid var(--trait);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--encre);
+    }
+
+    .section-header .trait-deco {
+      flex: 1;
+      height: 1px;
+      background: var(--trait);
+      max-width: 120px;
+    }
+
+    /* ─── GRILLE PHOTOS ─── */
+    .galerie {
+      columns: 3 260px;
+      column-gap: 12px;
+    }
+
+    .photo-card {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      background: #D6CCBC;
+      border: 1px solid var(--trait);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.35s ease;
+      filter: sepia(8%) contrast(1.03);
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .photo-card .legende {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--gris);
+      background: white;
+      border-top: 1px solid var(--trait);
+    }
+
+    /* ─── PLACEHOLDER SANS PHOTO ─── */
+    .placeholder-galerie {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .placeholder-card {
+      aspect-ratio: 4/3;
+      background: #E8E0D0;
+      border: 2px dashed var(--trait);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--gris);
+      font-size: 13px;
+      cursor: default;
+    }
+
+    .placeholder-card .icone {
+      font-size: 32px;
+      opacity: 0.4;
+    }
+
+    /* ─── INFOS ─── */
+    .infos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 28px;
+    }
+
+    .info-bloc h3 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bois-clair);
+      margin-bottom: 6px;
+    }
+
+    .info-bloc p {
+      font-size: 16px;
+      color: var(--encre);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-zone {
+      background: var(--encre);
+      color: var(--parchemin);
+      padding: 52px 40px;
+    }
+
+    .contact-zone h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      color: var(--bois-clair);
+    }
+
+    .contact-zone p {
+      font-size: 16px;
+      color: #C0B8AA;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .contact-zone a {
+      display: inline-block;
+      background: var(--bois);
+      color: white;
+      text-decoration: none;
+      padding: 13px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+
+    .contact-zone a:hover {
+      background: var(--bois-clair);
+      color: var(--encre);
+    }
+
+    .contact-tel {
+      margin-top: 20px;
+      font-size: 22px;
+      font-family: 'Playfair Display', Georgia, serif;
+      color: white;
+      letter-spacing: 1px;
+    }
+
+    /* ─── PIED DE PAGE ─── */
+    footer {
+      padding: 24px 40px;
+      font-size: 13px;
+      color: var(--gris);
+      border-top: 1px solid var(--trait);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      header, section, .intro, .contact-zone, footer { padding-left: 20px; padding-right: 20px; }
+      .galerie { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ EN-TÊTE ══════════════ -->
+<header>
+  <span class="label-metier">Menuisier Fabricant &amp; Poseur — Rennes</span>
+  <h1>Simon<br>Cabinetmaker</h1>
+  <p class="tagline">Fabrication sur mesure, agencement intérieur et ébénisterie. Réalisations en atelier et pose.</p>
+  <nav>
+    <a href="#fabrication">Fabrication</a>
+    <a href="#pose">Pose</a>
+    <a href="#finitions">Finitions</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ══════════════ INTRO ══════════════ -->
+<div class="intro">
+  <p>CAP Menuisier Fabricant. Travail du bois massif, panneaux dérivés, quincaillerie de précision. Ce portfolio regroupe mes chantiers récents — de la conception en atelier à la pose chez le client.</p>
+</div>
+
+<!-- ══════════════ SECTION FABRICATION ══════════════ -->
+<section id="fabrication">
+  <div class="section-header">
+    <h2>Fabrication atelier</h2>
+    <div class="trait-deco"></div>
+  </div>
+
+  <!--
+    ┌─────────────────────────────────────────────────────┐
+    │  COMMENT AJOUTER TES PHOTOS :                       │
+    │                                                     │
+    │  Remplace les blocs <div class="placeholder-card">  │
+    │  par des blocs comme celui-ci :                     │
+    │                                                     │
+    │  <div class="photo-card">                           │
+    │    <img src="chemin/vers/photo.jpg" alt="...">      │
+    │    <div class="legende">Enfilade chêne — 2024</div> │
+    │  </div>                                             │
+    └─────────────────────────────────────────────────────┘
+  -->
+
+  <div class="galerie">
+    <!-- À remplacer par tes vraies photos -->
+    <div class="placeholder-card"><span class="icone">🪵</span><span>Ajouter une photo</span></div>
+    <div class="placeholder-card"><span class="icone">🪵</span><span>Ajouter une photo</span></div>
+    <div class="placeholder-card"><span class="icone">🪵</span><span>Ajouter une photo</span></div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION POSE ══════════════ -->
+<section id="pose">
+  <div class="section-header">
+    <h2>Pose & agencement</h2>
+    <div class="trait-deco"></div>
+  </div>
+  <div class="galerie">
+    <div class="placeholder-card"><span class="icone">🔨</span><span>Ajouter une photo</span></div>
+    <div class="placeholder-card"><span class="icone">🔨</span><span>Ajouter une photo</span></div>
+    <div class="placeholder-card"><span class="icone">🔨</span><span>Ajouter une photo</span></div>
+  </div>
+</section>
+
+<!-- ══════════════ SECTION FINITIONS ══════════════ -->
+<section id="finitions">
+  <div class="section-header">
+    <h2>Finitions & détails</h2>
+    <div class="trait-deco"></div>
+  </div>
+  <div class="galerie">
+    <div class="placeholder-card"><span class="icone">✏️</span><span>Ajouter une photo</span></div>
+    <div class="placeholder-card"><span class="icone">✏️</span><span>Ajouter une photo</span></div>
+    <div class="placeholder-card"><span class="icone">✏️</span><span>Ajouter une photo</span></div>
+  </div>
+</section>
+
+<!-- ══════════════ INFOS PERSO ══════════════ -->
+<section>
+  <div class="section-header">
+    <h2>Profil</h2>
+    <div class="trait-deco"></div>
+  </div>
+  <div class="infos-grid">
+    <div class="info-bloc">
+      <h3>Formation</h3>
+      <p>CAP Menuisier Fabricant<br>Greta — Lycée La Champagne, Vitré</p>
+    </div>
+    <div class="info-bloc">
+      <h3>Secteur</h3>
+      <p>Rennes et agglomération</p>
+    </div>
+    <div class="info-bloc">
+      <h3>Spécialités</h3>
+      <p>Bois massif, contreplaqué plaqué, agencement, mobilier sur mesure</p>
+    </div>
+    <div class="info-bloc">
+      <h3>Disponibilité</h3>
+      <p>Recherche missions intérim<br>Disponible à partir de mi-août</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<div class="contact-zone" id="contact">
+  <h2>Me contacter</h2>
+  <p>Pour un chantier, une mission en intérim ou une collaboration, n'hésitez pas à m'écrire.</p>
+  <a href="mailto:TON.EMAIL@exemple.fr">Envoyer un message</a>
+  <!-- Si tu veux afficher ton téléphone : -->
+  <!-- <div class="contact-tel">06 XX XX XX XX</div> -->
+</div>
+
+<!-- ══════════════ PIED ══════════════ -->
+<footer>
+  <span>Simon — Menuisier Fabricant, Rennes</span>
+  <span>© 2025</span>
+</footer>
+
+</body>
+</html>
